@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "bigearthnet_gdf_builder"
+version = "0.1.0"
+description = "A package to generate and extend BigEarthNet GeoDataFrame's."
+authors = ["Kai Norman Clasen <snakemap_navigation@protonmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/kai-tub/bigearthnet_gdf_builder"
+repository = "https://github.com/kai-tub/bigearthnet_gdf_builder"
+documentation = "https://kai-tub.github.io/bigearthnet_gdf_builder/"
+keywords = ["geopandas", "ben", "bigearthnet", "script", "parquet"]
+include = [
+    "LICENSE",
+]
+
+
+[tool.poetry.dependencies]
+# geopandas deprecated Python 3.6
+python = "^3.7"
+# pandas is implicit dependency of geopandas
+geopandas = "^0.10"
+rich = "^10|^11"
+pydantic = "^1.8"
+fastcore = "^1.3"
+natsort = "^8"
+pygeos = "^0.12"
+pyarrow = "^6"
+appdirs = "^1.4"
+# typer is only required for CLI interface, but can
+# be listed as true dependency in my opinion
+typer = "^0.4"
+bigearthnet-common = "^1.0.0"
+
+
+[tool.poetry.dev-dependencies]
+nbdev = "^1.1"
+# 6.1.13/6.2 seem to be broken in combination with nbdev
+jupyter_client = "<6.1.13"
+black = "*"
+isort = "*"
+# Strictly speaking, I do not require these in the library
+folium = "*"
+matplotlib = "*"
+mapclassify = "*"
+
+[tool.poetry.scripts]
+ben_gdf_builder = "bigearthnet_gdf_builder.builder:_run_gdf_cli"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
