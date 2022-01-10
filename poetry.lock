@@ -84,7 +84,7 @@ python-versions = "*"
 
 [[package]]
 name = "bigearthnet-common"
-version = "1.0.0"
+version = "1.0.1"
 description = "A collection of common tools to interact with the BigEarthNet dataset."
 category = "main"
 optional = false
@@ -95,7 +95,7 @@ appdirs = ">=1.4,<2.0"
 fastcore = ">=1.3,<2.0"
 natsort = ">=8,<9"
 pydantic = ">=1.8,<2.0"
-rich = ">=10,<11"
+rich = ">=10,<12"
 typer = ">=0.4,<0.5"
 
 [[package]]
@@ -1227,7 +1227,7 @@ use_chardet_on_py3 = ["chardet (>=3.0.2,<5)"]
 
 [[package]]
 name = "rich"
-version = "10.16.2"
+version = "11.0.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 category = "main"
 optional = false
@@ -1523,8 +1523,8 @@ backcall = [
     {file = "backcall-0.2.0.tar.gz", hash = "sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e"},
 ]
 bigearthnet-common = [
-    {file = "bigearthnet_common-1.0.0-py3-none-any.whl", hash = "sha256:1f2049319610b58ef8eb3355ec5c69f3410d5ab380bd283393d8b1c44c01adb9"},
-    {file = "bigearthnet_common-1.0.0.tar.gz", hash = "sha256:b1f43d6143a77c37ee19d63f57dfff77d8f10d3cb7bbbf2ceae66afb18cabc26"},
+    {file = "bigearthnet_common-1.0.1-py3-none-any.whl", hash = "sha256:aa67207ee8e239160207546fdb7e9f985cfb04b4033ee503ee0290d1c6d4a5a6"},
+    {file = "bigearthnet_common-1.0.1.tar.gz", hash = "sha256:6dd9db414a121cb8b7e8892c799440ded4fe937644436c506444f33813c4205b"},
 ]
 black = [
     {file = "black-21.12b0-py3-none-any.whl", hash = "sha256:a615e69ae185e08fdd73e4715e260e2479c861b5740057fde6e8b4e3b7dd589f"},
@@ -2392,8 +2392,8 @@ requests = [
     {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
 ]
 rich = [
-    {file = "rich-10.16.2-py3-none-any.whl", hash = "sha256:c59d73bd804c90f747c8d7b1d023b88f2a9ac2454224a4aeaf959b21eeb42d03"},
-    {file = "rich-10.16.2.tar.gz", hash = "sha256:720974689960e06c2efdb54327f8bf0cdbdf4eae4ad73b6c94213cad405c371b"},
+    {file = "rich-11.0.0-py3-none-any.whl", hash = "sha256:d7a8086aa1fa7e817e3bba544eee4fd82047ef59036313147759c11475f0dafd"},
+    {file = "rich-11.0.0.tar.gz", hash = "sha256:c32a8340b21c75931f157466fefe81ae10b92c36a5ea34524dff3767238774a4"},
 ]
 scikit-learn = [
     {file = "scikit-learn-1.0.2.tar.gz", hash = "sha256:b5870959a5484b614f26d31ca4c17524b1b0317522199dc985c3b4256e030767"},
