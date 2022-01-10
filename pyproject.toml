@@ -30,6 +30,7 @@ appdirs = "^1.4"
 # be listed as true dependency in my opinion
 typer = "^0.4"
 bigearthnet-common = "^1.0.0"
+fastprogress = "^1.0.0"
 
 
 [tool.poetry.dev-dependencies]
