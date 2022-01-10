@@ -3,6 +3,7 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"COUNTRIES_URL": "00_builder.ipynb",
+         "USER_DIR": "00_builder.ipynb",
          "box_from_ul_lr_coords": "00_builder.ipynb",
          "ben_s2_patch_to_gdf": "00_builder.ipynb",
          "ben_s1_patch_to_gdf": "00_builder.ipynb",

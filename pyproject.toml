@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "bigearthnet_gdf_builder"
 version = "0.1.1"
-description = "A package to generate and extend BigEarthNet GeoDataFrames."
+description = "A package to generate and extend BigEarthNet GeoDataFrame's."
 authors = ["Kai Norman Clasen <snakemap_navigation@protonmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"

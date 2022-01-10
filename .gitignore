@@ -1,4 +1,5 @@
 ben_gdf_builder_env/
+*.parquet
 .vscode/
 # hide this for now
 tiny.parquet
