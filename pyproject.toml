@@ -29,7 +29,7 @@ appdirs = "^1.4"
 # typer is only required for CLI interface, but can
 # be listed as true dependency in my opinion
 typer = "^0.4"
-bigearthnet-common = "^1.0.0"
+bigearthnet-common = "^2"
 fastprogress = "^1.0.0"
 
 
