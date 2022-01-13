@@ -84,7 +84,7 @@ python-versions = "*"
 
 [[package]]
 name = "bigearthnet-common"
-version = "1.0.1"
+version = "2.1.0"
 description = "A collection of common tools to interact with the BigEarthNet dataset."
 category = "main"
 optional = false
@@ -583,7 +583,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "jsonschema"
-version = "4.3.3"
+version = "4.4.0"
 description = "An implementation of JSON Schema validation for Python"
 category = "dev"
 optional = false
@@ -872,7 +872,7 @@ test = ["pytest (>=6.2)", "pytest-cov (>=2.12)", "codecov (>=2.1)"]
 
 [[package]]
 name = "notebook"
-version = "6.4.6"
+version = "6.4.7"
 description = "A web-based notebook environment for interactive computing"
 category = "dev"
 optional = false
@@ -1483,7 +1483,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "f9151174dcc68a5152be75ec596bdb1fe7da4486938d9cdfdb4510c83d4f2625"
+content-hash = "a6455e2ba5bd0102818563fdd729fa7b2d9a55cca09119494bfcfd5e6e3aac15"
 
 [metadata.files]
 appdirs = [
@@ -1534,8 +1534,8 @@ backcall = [
     {file = "backcall-0.2.0.tar.gz", hash = "sha256:5cbdbf27be5e7cfadb448baf0aa95508f91f2bbc6c6437cd9cd06e2a4c215e1e"},
 ]
 bigearthnet-common = [
-    {file = "bigearthnet_common-1.0.1-py3-none-any.whl", hash = "sha256:aa67207ee8e239160207546fdb7e9f985cfb04b4033ee503ee0290d1c6d4a5a6"},
-    {file = "bigearthnet_common-1.0.1.tar.gz", hash = "sha256:6dd9db414a121cb8b7e8892c799440ded4fe937644436c506444f33813c4205b"},
+    {file = "bigearthnet_common-2.1.0-py3-none-any.whl", hash = "sha256:97f105ef6a56591ddf0961cd5ed981e136f4f668fb3c678bb309606148af5432"},
+    {file = "bigearthnet_common-2.1.0.tar.gz", hash = "sha256:4ad038a0153516117cae897db787ed89da764b981231c29933772e46caff19cb"},
 ]
 black = [
     {file = "black-21.12b0-py3-none-any.whl", hash = "sha256:a615e69ae185e08fdd73e4715e260e2479c861b5740057fde6e8b4e3b7dd589f"},
@@ -1752,8 +1752,8 @@ joblib = [
     {file = "joblib-1.1.0.tar.gz", hash = "sha256:4158fcecd13733f8be669be0683b96ebdbbd38d23559f54dca7205aea1bf1e35"},
 ]
 jsonschema = [
-    {file = "jsonschema-4.3.3-py3-none-any.whl", hash = "sha256:eb7a69801beb7325653aa8fd373abbf9ff8f85b536ab2812e5e8287b522fb6a2"},
-    {file = "jsonschema-4.3.3.tar.gz", hash = "sha256:f210d4ce095ed1e8af635d15c8ee79b586f656ab54399ba87b8ab87e5bff0ade"},
+    {file = "jsonschema-4.4.0-py3-none-any.whl", hash = "sha256:77281a1f71684953ee8b3d488371b162419767973789272434bbc3f29d9c8823"},
+    {file = "jsonschema-4.4.0.tar.gz", hash = "sha256:636694eb41b3535ed608fe04129f26542b59ed99808b4f688aa32dcf55317a83"},
 ]
 jupyter = [
     {file = "jupyter-1.0.0-py2.py3-none-any.whl", hash = "sha256:5b290f93b98ffbc21c0c7e749f054b3267782166d72fa5e3ed1ed4eaf34a2b78"},
@@ -1975,8 +1975,8 @@ networkx = [
     {file = "networkx-2.6.3.tar.gz", hash = "sha256:c0946ed31d71f1b732b5aaa6da5a0388a345019af232ce2f49c766e2d6795c51"},
 ]
 notebook = [
-    {file = "notebook-6.4.6-py3-none-any.whl", hash = "sha256:5cad068fa82cd4fb98d341c052100ed50cd69fbfb4118cb9b8ab5a346ef27551"},
-    {file = "notebook-6.4.6.tar.gz", hash = "sha256:7bcdf79bd1cda534735bd9830d2cbedab4ee34d8fe1df6e7b946b3aab0902ba3"},
+    {file = "notebook-6.4.7-py3-none-any.whl", hash = "sha256:968e9c09639fe4b9dbf4b9f028daf861b563c124d735a99d6d48c09317553f31"},
+    {file = "notebook-6.4.7.tar.gz", hash = "sha256:b01da66f11a203b3839d6afa4013674bcfff41c36552f9ad0fbcb2d93c92764a"},
 ]
 numpy = [
     {file = "numpy-1.21.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:38e8648f9449a549a7dfe8d8755a5979b45b3538520d1e735637ef28e8c2dc50"},

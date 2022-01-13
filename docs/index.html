@@ -31,16 +31,6 @@ nb_path: "nbs/index.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<!-- [![Tests](https://img.shields.io/github/workflow/status/kai-tub/bigearthnet_common/CI?color=dark-green&label=%20Tests)](https://github.com/kai-tub/bigearthnet_common/actions/workflows/main.yml)
-[![License](https://img.shields.io/pypi/l/bigearthnet_common?color=dark-green)](https://github.com/kai-tub/bigearthnet_common/blob/main/LICENSE)
-[![PyPI version](https://badge.fury.io/py/bigearthnet-common.svg)](https://pypi.org/project/bigearthnet-common/)
-[![Conda Version](https://img.shields.io/conda/vn/conda-forge/bigearthnet-common?color=dark-green)](https://anaconda.org/conda-forge/bigearthnet-common)
-[![Auto Release](https://img.shields.io/badge/release-auto.svg?colorA=888888&colorB=9B065A&label=auto&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACzElEQVR4AYXBW2iVBQAA4O+/nLlLO9NM7JSXasko2ASZMaKyhRKEDH2ohxHVWy6EiIiiLOgiZG9CtdgG0VNQoJEXRogVgZYylI1skiKVITPTTtnv3M7+v8UvnG3M+r7APLIRxStn69qzqeBBrMYyBDiL4SD0VeFmRwtrkrI5IjP0F7rjzrSjvbTqwubiLZffySrhRrSghBJa8EBYY0NyLJt8bDBOtzbEY72TldQ1kRm6otana8JK3/kzN/3V/NBPU6HsNnNlZAz/ukOalb0RBJKeQnykd7LiX5Fp/YXuQlfUuhXbg8Di5GL9jbXFq/tLa86PpxPhAPrwCYaiorS8L/uuPJh1hZFbcR8mewrx0d7JShr3F7pNW4vX0GRakKWVk7taDq7uPvFWw8YkMcPVb+vfvfRZ1i7zqFwjtmFouL72y6C/0L0Ie3GvaQXRyYVB3YZNE32/+A/D9bVLcRB3yw3hkRCdaDUtFl6Ykr20aaLvKoqIXUdbMj6GFzAmdxfWx9iIRrkDr1f27cFONGMUo/gRI/jNbIMYxJOoR1cY0OGaVPb5z9mlKbyJP/EsdmIXvsFmM7Ql42nEblX3xI1BbYbTkXCqRnxUbgzPo4T7sQBNeBG7zbAiDI8nWfZDhQWYCG4PFr+HMBQ6l5VPJybeRyJXwsdYJ/cRnlJV0yB4ZlUYtFQIkMZnst8fRrPcKezHCblz2IInMIkPzbbyb9mW42nWInc2xmE0y61AJ06oGsXL5rcOK1UdCbEXiVwNXsEy/6+EbaiVG8eeEAfxvaoSBnCH61uOD7BS1Ul8ESHBKWxCrdyd6EYNKihgEVrwOAbQruoytuBYIFfAc3gVN6iawhjKyNCEpYhVJXgbOzARyaU4hCtYizq5EI1YgiUoIlT1B7ZjByqmRWYbwtdYjoWoN7+LOIQefIqKawLzK6ID69GGpQgwhhEcwGGUzfEPAiPqsCXadFsAAAAASUVORK5CYII=)](https://github.com/intuit/auto) -->
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <p>This library provides a collection of functions to generate and extend GeoDataFrames for the <a href="bigearth.net">BigEarthNet</a> dataset.</p>
 <p><code>bigearthnet_gdf_builder</code> tries to accomplish two goals:</p>
 <ol>
@@ -92,6 +82,19 @@ Functions for both archives, BEN-S1 and BEN-S2, are provided.</p>
 <li><code>ben_gdf_builder build-raw-ben-s1-parquet</code> (available after installing package) or</li>
 <li><code>python -m bigearthnet_gdf_builder.builder build-raw-ben-s1-parquet</code></li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Relation-to-bigearthnet_common">Relation to bigearthnet_common<a class="anchor-link" href="#Relation-to-bigearthnet_common"> </a></h2><p>There exists a <em>logical, circular</em> dependency between <a href="https://github.com/kai-tub/bigearthnet_common">bigearthnet_common</a> and this project.
+<code>bigearthnet_gdf_builder</code> uses functions from <code>bigearthnet_common</code> to safely read the BigEarthNet JSON metadata files from the Sentine-1/2 archives.</p>
+<p>The resulting <code>raw</code> GeoDataFrame is further processed to the <code>extended</code> representation with extra metadata (season of the acquisition date, country, 19-class nomenclature, etc.).</p>
+<p>To easily provide a dependency free interaction with BigEarthnet, mainly to quickly create subsets, some of these results are distributed <em>in</em> the <code>bigearthnet_common</code> package.
+For example, this allows a user to quickly retrieve the corresponding S2 patch of an S1 input patch without needing to access the JSON file or the result of the <code>bigearthnet_gdf_builder</code>.</p>
+<p>The correctness of some <code>bigearthnet_common</code> functions depend on the correctness of this project!
+As such, <code>bigearthnet_gdf_builder</code> should never use functions from <code>bigearthnet_common</code> that make use of the distributed data.</p>
 
 </div>
 </div>

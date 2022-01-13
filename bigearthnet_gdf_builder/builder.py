@@ -189,7 +189,10 @@ def _parallel_gdf_path_builder(
 
     If an empty dataframe is produced, an `ValueError` is raised.
     """
-    # todo understand how to set target_proj a positional variable
+    # TODO: Check if categorical variables can greatly reduce the size
+    # if this is the case, check if the unpacking performs as expected for the encoder
+
+    # TODO understand how to set target_proj a positional variable
     gdfs = fc.parallel(
         gdf_builder,
         paths,
