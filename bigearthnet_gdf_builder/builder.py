@@ -14,6 +14,9 @@ import functools
 from numbers import Real
 from pathlib import Path
 from typing import Callable, List, Tuple, Union
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
+
 
 import appdirs
 import fastcore.all as fc
@@ -140,7 +143,7 @@ def ben_s1_patch_to_gdf(
 
 
 def ben_s2_patch_to_reprojected_gdf(
-    patch_path: Union[FilePath, DirectoryPath], target_proj: str = "epsg:4326"
+    patch_path: Union[FilePath, DirectoryPath], target_proj: str = "epsg:3035"
 ) -> geopandas.GeoDataFrame:
     """
     Calls `ben_s2_patch_to_gdf` and simply reprojects the resulting GeoDataFrame afterwards to the
@@ -155,7 +158,7 @@ def ben_s2_patch_to_reprojected_gdf(
 
 
 def ben_s1_patch_to_reprojected_gdf(
-    patch_path: Union[FilePath, DirectoryPath], target_proj: str = "epsg:4326"
+    patch_path: Union[FilePath, DirectoryPath], target_proj: str = "epsg:3035"
 ) -> geopandas.GeoDataFrame:
     """
     Calls `ben_s1_patch_to_gdf` and simply reprojects the resulting GeoDataFrame afterwards to the
@@ -176,7 +179,7 @@ def _parallel_gdf_path_builder(
     gdf_builder: Callable[[Path, str], geopandas.GeoDataFrame],
     n_workers: PositiveInt = 8,
     progress: bool = True,
-    target_proj: str = "epsg:4326",
+    target_proj: str = "epsg:3035",
 ) -> geopandas.GeoDataFrame:
     """
     Build a single `geopandas.GeoDataFrame` by applying the
@@ -222,7 +225,7 @@ def build_gdf_from_s2_patch_paths(
     the performance usually degrades.
 
     The function returns a single GDF with all patches reprojected to `target_proj`,
-    which is `epsg:4326` by default.
+    which is `epsg:3035` by default.
 
     If the directory contains no S2 patch-folders, an `ValueError` is raised.
     """
@@ -245,7 +248,7 @@ def build_gdf_from_s1_patch_paths(
     the performance usually degrades.
 
     The function returns a single GDF with all patches reprojected to `target_proj`,
-    which is `epsg:4326` by default.
+    which is `epsg:3035` by default.
 
     If the directory contains no S2 patch-folders, an `ValueError` is raised.
     """
@@ -544,7 +547,7 @@ def build_raw_ben_s2_parquet(
     ben_path: Path,
     output_path: Path = Path() / "raw_ben_s2_gdf.parquet",
     n_workers: int = 8,
-    target_proj: str = "epsg:4326",
+    target_proj: str = "epsg:3035",
     verbose: bool = True,
 ) -> Path:
     """
@@ -571,7 +574,7 @@ def build_raw_ben_s1_parquet(
     ben_path: Path,
     output_path: Path = Path() / "raw_ben_s1_gdf.parquet",
     n_workers: int = 8,
-    target_proj: str = "epsg:4326",
+    target_proj: str = "epsg:3035",
     verbose: bool = True,
 ) -> Path:
     """
@@ -770,8 +773,6 @@ def build_recommended_s1_parquet(
 
 def _run_gdf_cli() -> None:
     app = typer.Typer()
-    # hack command registration here
-    # to better test the underlying function
     app.command()(build_recommended_s1_parquet)
     app.command()(build_recommended_s2_parquet)
     app.command()(build_raw_ben_s1_parquet)
