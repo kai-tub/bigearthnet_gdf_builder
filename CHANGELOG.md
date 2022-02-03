@@ -1,3 +1,15 @@
+# v0.1.5 (Thu Feb 03 2022)
+
+#### 🐛 Bug Fix
+
+- Use EPSG:3035 by default [#5](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/5) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v0.1.4 (Thu Jan 13 2022)
 
 #### 🐛 Bug Fix
