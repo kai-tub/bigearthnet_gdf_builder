@@ -1,21 +1,20 @@
-env := "ben_gdf_builder_env"
-min_python := "3.7" # only used for poetry install!
+
+env-cmd := "poetry run"
 set dotenv-load := false
 
-install: install-requirements
-	mamba run --prefix {{justfile_directory()}}/{{env}} python -c "import geopandas; print('geopandas is loaded')"
-	mamba run --prefix {{justfile_directory()}}/{{env}} python -m ipykernel install --user
+install: install_python_deps install_ipykernel
 
-install-requirements:
-	mamba env create --prefix ./{{env}} -f env.yml --force
+install_python_deps:
+    poetry install
 
-install_poetry:
-	poetry install
-	# mamba create --prefix {{justfile_directory()}}/{{env}} python={{min_python}} --force
-	# mamba run --prefix {{justfile_directory()}}/{{env}} poetry install
-	# mamba run --prefix {{justfile_directory()}}/{{env}} python -m ipykernel install --user
-	# dependencies to view documentation locally
-	# mamba run --prefix {{justfile_directory()}}/{{env}} mamba install -c conda-forge docker-compose
+install_ipykernel:
+	{{env-cmd}} python -m ipykernel install --user
 
-docs:
-	docker-compose up
+build: install_ipykernel
+	{{env-cmd}} sphinx-build {{justfile_directory()}}/docs {{justfile_directory()}}/docs/_build/
+
+serve-docs: build
+	{{env-cmd}} python {{justfile_directory()}}/serve_docs.py
+
+test:
+	{{env-cmd}} pytest tests/
