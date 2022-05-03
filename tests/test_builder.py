@@ -1,18 +1,19 @@
-import pytest
+from pathlib import Path
 
-import pandas as pd
-import pandas.testing
+import fastcore.all as fc
 import geopandas
 import geopandas.testing
-from pathlib import Path
-import fastcore.all as fc
+import pandas as pd
+import pandas.testing
+import pytest
+from bigearthnet_common.constants import COUNTRIES, COUNTRIES_ISO_A2
+from shapely.geometry import Point, Polygon, box
+
 from bigearthnet_gdf_builder.builder import *
 from bigearthnet_gdf_builder.builder import (
     _get_box_from_two_coords,
     _get_country_borders,
 )
-from shapely.geometry import Polygon, Point, box
-from bigearthnet_common.constants import COUNTRIES, COUNTRIES_ISO_A2
 
 
 @pytest.fixture
@@ -239,6 +240,7 @@ def test_filter_season():
         pd.DataFrame({"Date": ["2017-10-27"]}),
     )
 
+
 # FUTURE: Add tests that better test the functionality
 def test_add_full_ben_s2_metadata(test_dataset_path):
     gdf = get_gdf_from_s2_patch_dir(test_dataset_path)
@@ -246,11 +248,13 @@ def test_add_full_ben_s2_metadata(test_dataset_path):
     metadata_cols = {"snow", "cloud_or_shadow", "original_split", "country", "season"}
     assert set(metadata_gdf.columns.to_list()) & metadata_cols == metadata_cols
 
+
 def test_add_full_ben_s1_metadata(test_dataset_s1_path):
     gdf = get_gdf_from_s1_patch_dir(test_dataset_s1_path)
     metadata_gdf = add_full_ben_s1_metadata(gdf)
     metadata_cols = {"snow", "cloud_or_shadow", "original_split", "country", "season"}
     assert set(metadata_gdf.columns.to_list()) & metadata_cols == metadata_cols
+
 
 # TODO: Manually add some negative examples!
 def test_remove_bad_ben_gdf_entries(test_dataset_path):
@@ -258,15 +262,20 @@ def test_remove_bad_ben_gdf_entries(test_dataset_path):
     gdf2 = remove_bad_ben_gdf_entries(gdf1)
     geopandas.testing.assert_geodataframe_equal(gdf1, gdf2)
 
+
 def test_remove_bad_ben_gdf_entries(test_dataset_s1_path):
     gdf1 = get_gdf_from_s1_patch_dir(test_dataset_s1_path)
     gdf2 = remove_bad_ben_gdf_entries(gdf1)
     geopandas.testing.assert_geodataframe_equal(gdf1, gdf2)
 
+
 # TODO: Better test the written files!
 def test_build_recommended_s2_parquet(tmp_path, test_dataset_path):
-    t = build_recommended_s2_parquet(test_dataset_path, output_path=tmp_path / "out.parquet")
+    t = build_recommended_s2_parquet(
+        test_dataset_path, output_path=tmp_path / "out.parquet"
+    )
     assert t.stat().st_size > 0
+
 
 def test_build_raw_s2_parquet(tmp_path, test_dataset_path):
     p = build_raw_ben_s2_parquet(
@@ -274,9 +283,13 @@ def test_build_raw_s2_parquet(tmp_path, test_dataset_path):
     )
     assert p.stat().st_size > 0
 
+
 def test_build_recommended_s1_parquet(tmp_path, test_dataset_s1_path):
-    t = build_recommended_s1_parquet(test_dataset_s1_path, output_path=tmp_path / "out.parquet")
+    t = build_recommended_s1_parquet(
+        test_dataset_s1_path, output_path=tmp_path / "out.parquet"
+    )
     assert t.stat().st_size > 0
+
 
 def test_build_raw_s1_parquet(tmp_path, test_dataset_s1_path):
     p = build_raw_ben_s1_parquet(

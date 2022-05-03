@@ -1,5 +1,6 @@
 import enum
 import functools
+import shutil
 import warnings
 from numbers import Real
 from pathlib import Path
@@ -15,8 +16,12 @@ import pandas as pd
 import rich.traceback
 import typer
 from bigearthnet_common.base import (
+    get_original_split_from_patch_name,
     get_s1_patch_directories,
     get_s2_patch_directories,
+    is_cloudy_shadowy_patch,
+    is_snowy_patch,
+    old2new_labels,
     parse_datetime,
     read_S1_json,
     read_S2_json,
@@ -389,14 +394,6 @@ def filter_season(df, date_col: str, season: Season) -> pd.DataFrame:
     return df[seasons == season]
 
 
-from bigearthnet_common.base import (
-    get_original_split_from_patch_name,
-    is_cloudy_shadowy_patch,
-    is_snowy_patch,
-    old2new_labels,
-)
-
-
 def _add_full_ben_metadata(
     gdf: geopandas.GeoDataFrame, s2_name_col: str, date_col: str
 ) -> geopandas.GeoDataFrame:
@@ -513,10 +510,6 @@ def remove_bad_ben_gdf_entries(gdf: geopandas.GeoDataFrame) -> geopandas.GeoData
     gdf = _remove_snow_cloud_patches(gdf, s2_name_col)
     gdf = gdf.reset_index(drop=True)
     return gdf
-
-
-import shutil
-import tempfile
 
 
 def build_raw_ben_s2_parquet(
