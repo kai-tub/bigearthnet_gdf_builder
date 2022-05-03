@@ -33,11 +33,10 @@ jobs:
       - name: Install dependencies
         run: |
           just install
-      - name: Check precommit
-        run: |
-          pre-commit run --all-files
       - name: Run tests from within poetry
         run: |
           source $VENV
           just test
-
+      - name: Check precommit
+        run: |
+          pre-commit run --all-files
