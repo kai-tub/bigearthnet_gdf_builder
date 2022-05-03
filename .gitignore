@@ -80,7 +80,8 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
+docs/_build/*
+!docs/_build/.nojekyll
 
 # PyBuilder
 target/
