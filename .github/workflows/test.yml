@@ -39,4 +39,5 @@ jobs:
           just test
       - name: Check precommit
         run: |
+          source $VENV
           pre-commit run --all-files
