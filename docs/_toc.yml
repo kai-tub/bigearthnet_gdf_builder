@@ -1,0 +1,7 @@
+root: intro
+entries:
+  - glob: "[0-9][0-9]_*"
+  - file: api
+    subtrees:
+      - entries:
+        - glob: "api_*"

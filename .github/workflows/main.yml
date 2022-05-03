@@ -5,64 +5,62 @@ on:
   pull_request:
     branches: [main]
 
+
 jobs:
-  build:
-    strategy:
-      fail-fast: true
-      matrix:
-        python-version: [3.7, 3.8, 3.9]
+  # Here I am assuming that the tests have been run on the PR
+  # Otherwise it could be possible that a direct push to main
+  # would not run the test code and still publish to PyPI
+  documentation-and-publish:
+    name: Build documentation and publish
     runs-on: ubuntu-latest
+    # Always try to build the documentation!
+    # if: ${{ github.event_name == 'push' }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Set up Git
+        uses: actions/checkout@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+
+          python-version: 3.8
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
+      - uses: extractions/setup-just@v1
       - name: Install dependencies
-        run: poetry install --no-interaction --no-root
-      - name: Install library
-        run: poetry install --no-interaction
-      - name: Read all notebooks
         run: |
-          source .venv/bin/activate
-          nbdev_read_nbs
-      - name: Check if all notebooks are cleaned
-        # Local tests will usually have uncommited changes
-        if: ${{ !env.ACT }}
+          just install
+      - name: Build documentation
         run: |
-          source .venv/bin/activate
-          echo "Check we are starting with clean git checkout"
-          if [ -n "$(git status -uno -s)" ]; then echo "git status is not clean"; false; fi
-          echo "Trying to strip out notebooks"
-          nbdev_clean_nbs
-          echo "Check that strip out was unnecessary"
-          git status -s # display the status to see which nbs need cleaning up
-          if [ -n "$(git status -uno -s)" ]; then echo -e "!!! Detected unstripped out notebooks\n!!!Remember to run nbdev_install_git_hooks"; false; fi
-      - name: Check if there is no diff library/notebooks
-        run: |
-          source .venv/bin/activate
-          if [ -n "$(nbdev_diff_nbs)" ]; then echo -e "!!! Detected difference between the notebooks and the library"; false; fi
-      - name: Run tests
-        run: |
-          source .venv/bin/activate
-          nbdev_test_nbs
-  release:
-    name: Release new version on GitHub
-    runs-on: ubuntu-latest
-    needs: build
-    if: ${{ github.event_name == 'push' }}
-    steps:
-      - name: Set up Git
-        uses: actions/checkout@v2
-      - name: Prepare repository
-        run: git fetch --unshallow --tags
+          source $VENV
+          just build
+      # Must be run BEFORE GitHub Pages Deploy
+      # as the GitHub Pages action would check out a different
+      # branch; the error you would see is "no canary release available"
+      # It also requires checkout with all associated tags, i.e.,
+      # uses: actions/checkout@v3
+      # with:
+      #   fetch-depth: 0
       - name: Run release script
+        if: ${{ github.event_name == 'push' }}
         run: bash .auto/run_auto.sh
         env:
           # To be able to trigger publish event
           GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+
+
+
+      # always deploy github-pages if pushed to main
+      - name: Deploy 🚀
+        if: ${{ github.event_name == 'push' }}
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          # This should be set via `just build`
+          folder: docs/_build
