@@ -1,0 +1,535 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="API" href="api.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Builder - BigEarthNet GDF Builder documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="intro.html"><div class="brand">BigEarthNet GDF Builder  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="intro.html">
+  
+  
+  <span class="sidebar-brand-text">BigEarthNet GDF Builder  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="05_quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_relation.html">Relation to other tools</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="api.html">API</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Builder</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section class="tex2jax_ignore mathjax_ignore" id="module-bigearthnet_gdf_builder.builder">
+<span id="builder"></span><h1>Builder<a class="headerlink" href="#module-bigearthnet_gdf_builder.builder" title="Permalink to this headline">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.Season">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">Season</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.Season" title="Permalink to this definition">#</a></dt>
+<dd><p>A simple season class.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.add_full_ben_s1_metadata">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">add_full_ben_s1_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.add_full_ben_s1_metadata" title="Permalink to this definition">#</a></dt>
+<dd><p>This is a wrapper around many functions from this library.
+It requires an input <cite>GeoDataFrame</cite> in <em>S1-BigEarthNet</em> style.</p>
+<p>See <cite>get_gdf_from_s1_patch_dir</cite> for details to create a new <cite>GeoDataFrame</cite>.
+This function adds the following columns:</p>
+<ul class="simple">
+<li><p><cite>snow</cite>: <cite>bool</cite> - Whether or not the patch contains seasonal snow</p></li>
+<li><p><cite>cloud_or_shadow</cite>: <cite>bool</cite> - Whether or not the patch contains clouds/shadows</p></li>
+<li><dl class="simple">
+<dt><cite>original_split</cite>: One of: <cite>train|validation|test|None</cite>; Indicates to which</dt><dd><p>split the patch was originally assigned to</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>new_labels</cite>: <cite>label|None</cite> - The 19-label nomenclature or None if</dt><dd><p>no target labels exist.</p>
+</dd>
+</dl>
+</li>
+<li><p><cite>country</cite>: <cite>str</cite> - The name of the BigEarthNet country the patch belongs to.</p></li>
+<li><p><cite>season</cite>: <cite>str</cite> - The season in which the tile was aquired.</p></li>
+</ul>
+<p>In short, the function will add all the available metadata.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.add_full_ben_s2_metadata">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">add_full_ben_s2_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.add_full_ben_s2_metadata" title="Permalink to this definition">#</a></dt>
+<dd><p>This is a wrapper around many functions from this library.
+It requires an input <cite>GeoDataFrame</cite> in <em>S2-BigEarthNet</em> style.</p>
+<p>See <cite>get_gdf_from_s2_patch_dir</cite> for details to create a new <cite>GeoDataFrame</cite>.
+This function adds the following columns:</p>
+<ul class="simple">
+<li><p><cite>snow</cite>: <cite>bool</cite> - Whether or not the patch contains seasonal snow</p></li>
+<li><p><cite>cloud_or_shadow</cite>: <cite>bool</cite> - Whether or not the patch contains clouds/shadows</p></li>
+<li><dl class="simple">
+<dt><cite>original_split</cite>: One of: <cite>train|validation|test|None</cite>; Indicates to which</dt><dd><p>split the patch was originally assigned to</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>new_labels</cite>: <cite>label|None</cite> - The 19-label nomenclature or None if</dt><dd><p>no target labels exist.</p>
+</dd>
+</dl>
+</li>
+<li><p><cite>country</cite>: <cite>str</cite> - The name of the BigEarthNet country the patch belongs to.</p></li>
+<li><p><cite>season</cite>: <cite>str</cite> - The season in which the tile was aquired.</p></li>
+</ul>
+<p>In short, the function will add all the available metadata.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.assign_to_ben_country">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">assign_to_ben_country</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.assign_to_ben_country" title="Permalink to this definition">#</a></dt>
+<dd><p>Takes a GeoDataFrame as an input and appends a <cite>country</cite> column.
+The <cite>country</cite> column indicates the closest BEN country.</p>
+<p>The function calculates the centroid of each input geometry with the <cite>crs</cite> projection.
+These centroids are then used to find and assign the entry to the closest BEN country.
+Centroids help to more deterministically assign a border-crossing patch to a country.
+For the small BEN patches (1200mx1200m) the _error_ of the approximation is negligible
+and a good heuristic to assign the patch to the country with the largest overlap.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.ben_s1_patch_to_gdf">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">ben_s1_patch_to_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pydantic.types.FilePath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pydantic.types.DirectoryPath</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.ben_s1_patch_to_gdf" title="Permalink to this definition">#</a></dt>
+<dd><p>Given the filepath to a BigEarthNet json <cite>_metadata_labels</cite> file, or
+to the containing patch folder, the function will return a single row GeoDataFrame.</p>
+<p>The filepath is necessary, as only the filename contains the patch name.</p>
+<p>The datetime will be parsed with best effort and guaranteed to be in the format
+‘YYYY-MM-DDThh-mm-ss’ (different to Ben-S2!)</p>
+<p>The coordinates that indicate the upper-left-x/y and lower-right-x/y will be converted
+into a <cite>shapely.Polygon</cite>.</p>
+<p>The coordinate reference system (CRS) will be equivalent to the one given in the json file.
+Or with other words, the data is not reprojected!</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.ben_s1_patch_to_reprojected_gdf">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">ben_s1_patch_to_reprojected_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pydantic.types.FilePath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pydantic.types.DirectoryPath</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.ben_s1_patch_to_reprojected_gdf" title="Permalink to this definition">#</a></dt>
+<dd><p>Calls <cite>ben_s1_patch_to_gdf</cite> and simply reprojects the resulting GeoDataFrame afterwards to the
+given <cite>target_proj</cite>.</p>
+<p>This is a tiny wrapper to ensure that the generated BEN GeoDataFrame’s can be concatenated and have a
+common coordinate reference system.</p>
+<p>See <cite>ben_s1_patch_to_gdf</cite> for more details.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.ben_s2_patch_to_gdf">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">ben_s2_patch_to_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pydantic.types.FilePath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pydantic.types.DirectoryPath</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.ben_s2_patch_to_gdf" title="Permalink to this definition">#</a></dt>
+<dd><p>Given the filepath to a BigEarthNet json <cite>_metadata_labels</cite> file, or
+to the containing patch folder, the function will return a single row GeoDataFrame.</p>
+<p>The filepath is necessary, as only the filename contains the patch name.</p>
+<p>The datetime will be parsed with best effort and guaranteed to be in the format
+‘YYYY-MM-DD hh-mm-ss’ (different to BEN-S1!)</p>
+<p>The coordinates that indicate the upper-left-x/y and lower-right-x/y will be converted
+into a <cite>shapely.Polygon</cite>.</p>
+<p>The coordinate reference system (CRS) will be equivalent to the one given in the json file.
+Or with other words, the data is not reprojected!</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.ben_s2_patch_to_reprojected_gdf">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">ben_s2_patch_to_reprojected_gdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pydantic.types.FilePath</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pydantic.types.DirectoryPath</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.ben_s2_patch_to_reprojected_gdf" title="Permalink to this definition">#</a></dt>
+<dd><p>Calls <cite>ben_s2_patch_to_gdf</cite> and simply reprojects the resulting GeoDataFrame afterwards to the
+given <cite>target_proj</cite>.</p>
+<p>This is a tiny wrapper to ensure that the generated BEN GeoDataFrame’s can be concatenated and have a
+common coordinate reference system.</p>
+<p>See <cite>ben_s2_patch_to_gdf</cite> for more details.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.box_from_ul_lr_coords">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">box_from_ul_lr_coords</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ulx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numbers.Real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uly</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numbers.Real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lrx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numbers.Real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lry</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">numbers.Real</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">shapely.geometry.polygon.Polygon</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.box_from_ul_lr_coords" title="Permalink to this definition">#</a></dt>
+<dd><p>Build a box (<cite>Polygon</cite>) from upper left x/y and lower right x/y coordinates.</p>
+<p>This specification is the default BigEarthNet style.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_gdf_from_s1_patch_paths">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_gdf_from_s1_patch_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.PositiveInt</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_gdf_from_s1_patch_paths" title="Permalink to this definition">#</a></dt>
+<dd><p>Build a single <cite>geopandas.GeoDataFrame</cite> from the BEN-S1 json files.
+The code will run in parallel and use <cite>n_workers</cite> processes.
+By default a progress-bar will be shown.</p>
+<p>From personal experience, the ideal number of workers is 8 in most cases.
+For laptops with fewer cores, 2 or 4 <cite>n_workers</cite> should be set.
+More than 8 usually leads to only minor improvements and with n_workers &gt; 12
+the performance usually degrades.</p>
+<p>The function returns a single GDF with all patches reprojected to <cite>target_proj</cite>,
+which is <cite>epsg:3035</cite> by default.</p>
+<p>If the directory contains no S2 patch-folders, an <cite>ValueError</cite> is raised.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_gdf_from_s2_patch_paths">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_gdf_from_s2_patch_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pathlib.Path</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.PositiveInt</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_gdf_from_s2_patch_paths" title="Permalink to this definition">#</a></dt>
+<dd><p>Build a single <cite>geopandas.GeoDataFrame</cite> from the BEN-S2 json files.
+The code will run in parallel and use <cite>n_workers</cite> processes.
+By default a progress-bar will be shown.</p>
+<p>From personal experience, the ideal number of workers is 8 in most cases.
+For laptops with fewer cores, 2 or 4 <cite>n_workers</cite> should be set.
+More than 8 usually leads to only minor improvements and with n_workers &gt; 12
+the performance usually degrades.</p>
+<p>The function returns a single GDF with all patches reprojected to <cite>target_proj</cite>,
+which is <cite>epsg:3035</cite> by default.</p>
+<p>If the directory contains no S2 patch-folders, an <cite>ValueError</cite> is raised.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_raw_ben_s1_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_raw_ben_s1_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Path('raw_ben_s1_gdf.parquet')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_raw_ben_s1_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a fresh BigEarthNet-S1-style parquet file
+from all the image patches in the root <cite>ben_path</cite> folder.
+The output will be written to <cite>output_path</cite>.</p>
+<p>The default output is <cite>raw_ben_s1_gdf</cite> in the current directory.</p>
+<p>The other options are only for advanced use.
+Returns the resolved output path.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_raw_ben_s2_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_raw_ben_s2_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Path('raw_ben_s2_gdf.parquet')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_raw_ben_s2_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Create a fresh BigEarthNet-S2-style parquet file
+from all the image patches in the root <cite>ben_path</cite> folder.
+The output will be written to <cite>output_path</cite>.</p>
+<p>The default output is <cite>raw_ben_s2_gdf</cite> in the current directory.</p>
+<p>The other options are only for advanced use.
+Returns the resolved output path.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_recommended_s1_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_recommended_s1_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'final_ben_s1.parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_recommended_s1_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate the recommended S1-GeoDataFrame and save
+it as a parquet file.</p>
+<p>It will call <cite>build_raw_ben_s1_parquet</cite> under the hood and remove
+patches that are not recommended for DL.
+If <cite>add_metadata</cite> is set, the GeoDataFrame will be
+enriched with extra information, such as Country and Season of the patch.
+See <cite>add_full_ben_metadata</cite> for more information.</p>
+<p>This tool will store all intermediate results in the default USER directory.
+This directory will be printed to allow accessing these
+intermediate results if necessary.
+The resulting GeoDataFrame will be copied to <cite>output_path</cite>.</p>
+<p>The other keyword arguments should usually be left untouched.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.build_recommended_s2_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">build_recommended_s2_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'final_ben_s2.parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.build_recommended_s2_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate the recommended S2-GeoDataFrame and save
+it as a parquet file.</p>
+<p>It will call <cite>build_raw_ben_s2_parquet</cite> under the hood and remove
+patches that are not recommended for DL.
+If <cite>add_metadata</cite> is set, the GeoDataFrame will be
+enriched with extra information, such as Country and Season of the patch.
+See <cite>add_full_ben_metadata</cite> for more information.</p>
+<p>This tool will store all intermediate results in a temporary directory.
+This temporary directory will be printed to allow accessing these
+intermediate results if necessary.
+The resulting GeoDataFrame will be copied to <cite>output_path</cite>.</p>
+<p>The other keyword arguments should usually be left untouched.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.extend_ben_s1_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">extend_ben_s1_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_parquet_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'extended_ben_s1_gdf.parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.extend_ben_s1_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Extend an existing BigEarthNet-S1-style parquet file.</p>
+<p>The output will be written next to <cite>ben_parquet_path</cite> with the file
+<cite>output_name</cite>.
+The default name is <cite>extended_ben_s1_gdf</cite>.</p>
+<p>This function heavily relies on the structure of the parquet file.
+It should only be used on parquet files that were build with this library!
+Use the functions of this package directly to have more control!</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.extend_ben_s2_parquet">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">extend_ben_s2_parquet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_parquet_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'extended_ben_s2_gdf.parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.extend_ben_s2_parquet" title="Permalink to this definition">#</a></dt>
+<dd><p>Extend an existing BigEarthNet-S2-style parquet file.</p>
+<p>The output will be written next to <cite>ben_parquet_path</cite> with the file
+<cite>output_name</cite>.
+The default name is <cite>extended_ben_s2_gdf</cite>.</p>
+<p>This function heavily relies on the structure of the parquet file.
+It should only be used on parquet files that were build with this library!
+Use the functions of this package directly to have more control!</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.get_ben_countries_gdf">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">get_ben_countries_gdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.get_ben_countries_gdf" title="Permalink to this definition">#</a></dt>
+<dd><p>Return a <cite>GeoDataFrame</cite> that includes the shapes of each
+country from the BigEarthNet dataset.</p>
+<p>This is a subset of the naturalearthdata 10m-admin-0-countries dataset:</p>
+<p><a class="reference external" href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries">https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries</a></p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.get_gdf_from_s1_patch_dir">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">get_gdf_from_s1_patch_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.DirectoryPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.PositiveInt</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.get_gdf_from_s1_patch_dir" title="Permalink to this definition">#</a></dt>
+<dd><p>Searches through <cite>dir_path</cite> to assemble a BEN-S1-style <cite>GeoDataFrame</cite>.
+Will only consider correctly named directories.
+Wraps around <cite>get_s1_patch_directory</cite> and <cite>build_gdf_from_s1_patch_paths</cite>.</p>
+<p>Raises an error if an empty GeoDataFrame would be produced.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.get_gdf_from_s2_patch_dir">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">get_gdf_from_s2_patch_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.DirectoryPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pydantic.types.PositiveInt</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_proj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'epsg:3035'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.get_gdf_from_s2_patch_dir" title="Permalink to this definition">#</a></dt>
+<dd><p>Searches through <cite>dir_path</cite> to assemble a BEN-S2-style <cite>GeoDataFrame</cite>.
+Will only consider correctly named directories.
+Wraps around <cite>get_s2_patch_directory</cite> and <cite>build_gdf_from_s2_patch_paths</cite>.</p>
+<p>Raises an error if an empty GeoDataFrame would be produced.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.remove_bad_ben_gdf_entries">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">remove_bad_ben_gdf_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gdf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">geopandas.geodataframe.GeoDataFrame</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.remove_bad_ben_gdf_entries" title="Permalink to this definition">#</a></dt>
+<dd><p>It will ensure that the returned frame will only contain patches that
+also have labels for the 19 label version.</p>
+<p>If the GeoDataFrame doesn’t include a column named <cite>new_labels</cite>, it
+will be created by converting the <cite>labels</cite> column.
+The patches that do not contain any <cite>new_labels</cite> are dropped.</p>
+<p>There are 57 patches that would have no target labels.
+Also patches that are covered by seasonal snow or clouds/shadows
+are removed if present.</p>
+<p>The dataframe will be reindexed.</p>
+<p>Note: This function applies to both S1 and S2 BigEarthNet dataframes!</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.remove_discouraged_parquet_entries">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">remove_discouraged_parquet_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ben_parquet_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pathlib.Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'cleaned_ben_gdf.parquet'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pathlib.Path</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.remove_discouraged_parquet_entries" title="Permalink to this definition">#</a></dt>
+<dd><p>Remove entries of an existing BigEarthNet-style (S1 or S2) parquet file.</p>
+<p>The output will be written next to <cite>ben_parquet_path</cite> with the file
+<cite>output_name</cite>.
+The default name is <cite>cleaned_ben_gdf.parquet</cite>.</p>
+<p>This function only requires the input parquet file to have the
+<cite>name</cite> column and the original 43-class nomenclature called <cite>labels</cite>.</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="bigearthnet_gdf_builder.builder.tfm_month_to_season">
+<span class="sig-prename descclassname"><span class="pre">bigearthnet_gdf_builder.builder.</span></span><span class="sig-name descname"><span class="pre">tfm_month_to_season</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dates</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.core.series.Series</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.core.series.Series</span></span></span><a class="headerlink" href="#bigearthnet_gdf_builder.builder.tfm_month_to_season" title="Permalink to this definition">#</a></dt>
+<dd><p>Uses simple mathmatical formula to transform date
+to seasons string given their months.</p>
+<p>The season is calculated as the meterological season, assuming
+that we are on the northern hemisphere.</p>
+</dd></dl>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          <a class="prev-page" href="api.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2022, Kai Norman Clasen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/kai-tub/bigearthnet_gdf_builder/" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/scripts/furo.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    </body>
+</html>
