@@ -19,7 +19,8 @@ keywords = ["geopandas", "ben", "bigearthnet", "script", "parquet"]
 # TODO: Find a better way to set these values!
 python = "^3.8"
 geopandas = "^0.10"
-rich = "^10|^11|^12"
+# Only limit if rich actually requires changes
+rich = ">=10"
 pydantic = "^1.8"
 fastcore = "^1.3"
 natsort = "^8"
@@ -29,7 +30,7 @@ appdirs = "^1.4"
 # typer is only required for CLI interface, but can
 # be listed as true dependency in my opinion
 typer = "^0.4"
-bigearthnet-common = "^2"
+bigearthnet-common = ">=2.4, <=3.0"
 
 [tool.poetry.dev-dependencies]
 black = "*"
