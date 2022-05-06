@@ -1,3 +1,23 @@
+# v0.1.7 (Fri May 06 2022)
+
+#### 🐛 Bug Fix
+
+- update dependency to force newer bigearthnet-common [#9](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/9) ([@kai-tub](https://github.com/kai-tub))
+
+#### 🏠 Internal
+
+- Add .nojekyll file [#7](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/7) ([@kai-tub](https://github.com/kai-tub))
+
+#### 📝 Documentation
+
+- Add badges [#8](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/8) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v0.1.6 (Tue May 03 2022)
 
 #### 🐛 Bug Fix
