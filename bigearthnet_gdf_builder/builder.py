@@ -294,8 +294,12 @@ def _get_country_borders() -> geopandas.GeoDataFrame:
 
     # do not depent on internal function
     # file_path = _download_and_cache_url(COUNTRIES_URL, force_download=force_download)
-
     gdf = geopandas.read_file(COUNTRIES_URL)
+    # NOTE: Update to the admin naturalearthdataset has removed the
+    # ISO_A2 label for Kosovo, to remain compatible with previous version,
+    # the function will inject the disputed ISO_A2 code for Kosovo
+    kosovo_index = gdf[gdf["NAME"] == "Kosovo"].index
+    gdf.loc[kosovo_index, "ISO_A2"] = "XK"
     return gdf[rel_cols]
 
 
