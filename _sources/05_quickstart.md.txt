@@ -13,6 +13,12 @@ To build the tabular data, use:
 - `ben_gdf_builder --help` or
 - `python -m bigearthnet_gdf_builder.builder --help`
 
+:::{record_cli_cmd} ben_gdf_builder --help
+:rows: 35
+:autoplay: "true"
+
+:::
+
 There are four command types:
 1. `build-raw-ben-s1/2-parquet` (depending on BEN-S1/S2 source data)
     - Convert all JSON files to a common GeoDataFrame parquet file

@@ -5,12 +5,12 @@
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quickstart" href="05_quickstart.html" />
 
-    <meta name="generator" content="sphinx-4.5.0, furo 2022.06.21"/>
+    <meta name="generator" content="sphinx-4.5.0, furo 2022.09.29"/>
         <title>BigEarthNet GDF Builder documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=40978830699223671f4072448e654b5958f38b89" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=d81277517bee4d6b0349d71bb2661d4890b5617c" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/asciinema-player.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
     
     
@@ -163,6 +163,9 @@
 <li class="toctree-l2"><a class="reference internal" href="api_builder.html">Builder</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="general/dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general/code_of_conduct.html">Contributor Covenant Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference internal" href="general/license.html">License</a></li>
 </ul>
 
 </div>
@@ -182,7 +185,8 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
@@ -198,14 +202,17 @@
         <article role="main">
           <section class="tex2jax_ignore mathjax_ignore" id="bigearthnet-gdf-builder">
 <span id="intro"></span><h1>BigEarthNet GDF Builder<a class="headerlink" href="#bigearthnet-gdf-builder" title="Permalink to this headline">#</a></h1>
-<p><a class="reference external" href="https://github.com/kai-tub/bigearthnet_gdf_builder/actions/workflows/main.yml"><img alt="Tests" src="https://img.shields.io/github/workflow/status/kai-tub/bigearthnet_gdf_builder/CI?color=dark-green&amp;label=%20Tests" /></a>
-<a class="reference external" href="https://github.com/kai-tub/bigearthnet_gdf_builder/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/bigearthnet_gdf_builder?color=dark-green" /></a>
-<a class="reference external" href="https://pypi.org/project/bigearthnet-gdf-builder/"><img alt="PyPI version" src="https://badge.fury.io/py/bigearthnet-gdf-builder.svg" /></a>
-<a class="reference external" href="https://github.com/intuit/auto"><img alt="Auto Release" src="https://img.shields.io/badge/release-auto.svg?colorA=888888&amp;colorB=9B065A&amp;label=auto&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACzElEQVR4AYXBW2iVBQAA4O+/nLlLO9NM7JSXasko2ASZMaKyhRKEDH2ohxHVWy6EiIiiLOgiZG9CtdgG0VNQoJEXRogVgZYylI1skiKVITPTTtnv3M7+v8UvnG3M+r7APLIRxStn69qzqeBBrMYyBDiL4SD0VeFmRwtrkrI5IjP0F7rjzrSjvbTqwubiLZffySrhRrSghBJa8EBYY0NyLJt8bDBOtzbEY72TldQ1kRm6otana8JK3/kzN/3V/NBPU6HsNnNlZAz/ukOalb0RBJKeQnykd7LiX5Fp/YXuQlfUuhXbg8Di5GL9jbXFq/tLa86PpxPhAPrwCYaiorS8L/uuPJh1hZFbcR8mewrx0d7JShr3F7pNW4vX0GRakKWVk7taDq7uPvFWw8YkMcPVb+vfvfRZ1i7zqFwjtmFouL72y6C/0L0Ie3GvaQXRyYVB3YZNE32/+A/D9bVLcRB3yw3hkRCdaDUtFl6Ykr20aaLvKoqIXUdbMj6GFzAmdxfWx9iIRrkDr1f27cFONGMUo/gRI/jNbIMYxJOoR1cY0OGaVPb5z9mlKbyJP/EsdmIXvsFmM7Ql42nEblX3xI1BbYbTkXCqRnxUbgzPo4T7sQBNeBG7zbAiDI8nWfZDhQWYCG4PFr+HMBQ6l5VPJybeRyJXwsdYJ/cRnlJV0yB4ZlUYtFQIkMZnst8fRrPcKezHCblz2IInMIkPzbbyb9mW42nWInc2xmE0y61AJ06oGsXL5rcOK1UdCbEXiVwNXsEy/6+EbaiVG8eeEAfxvaoSBnCH61uOD7BS1Ul8ESHBKWxCrdyd6EYNKihgEVrwOAbQruoytuBYIFfAc3gVN6iawhjKyNCEpYhVJXgbOzARyaU4hCtYizq5EI1YgiUoIlT1B7ZjByqmRWYbwtdYjoWoN7+LOIQefIqKawLzK6ID69GGpQgwhhEcwGGUzfEPAiPqsCXadFsAAAAASUVORK5CYII=" /></a></p>
-<!-- [![Conda Version](https://img.shields.io/conda/vn/conda-forge/bigearthnet-gdf-builder?color=dark-green)](https://anaconda.org/conda-forge/bigearthnet-gdf-builder) -->
 <blockquote>
-<div><p>A package to generate and extend BigEarthNet GeoDataFrame’s.</p>
+<div><p>A package to generate and extend BigEarthNet GeoDataFrames.</p>
 </div></blockquote>
+<p><a class="reference external" href="https://github.com/kai-tub/bigearthnet_gdf_builder//actions/workflows/main.yml"><img alt="Tests" src="https://img.shields.io/github/workflow/status/kai-tub/bigearthnet_gdf_builder/CI?color=dark-green&amp;label=%20Tests" /></a>
+<a class="reference external" href="https://github.com/kai-tub/bigearthnet_gdf_builder//blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/bigearthnet-gdf-builder?color=dark-green" /></a>
+<a class="reference external" href="https://pypi.org/project/bigearthnet-gdf-builder"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/bigearthnet-gdf-builder" /></a>
+<a class="reference external" href="https://pypi.org/project/bigearthnet-gdf-builder"><img alt="PyPI version" src="https://img.shields.io/pypi/v/bigearthnet-gdf-builder" /></a>
+<a class="reference external" href="https://anaconda.org/conda-forge/bigearthnet-gdf-builder"><img alt="Conda Version" src="https://img.shields.io/conda/vn/conda-forge/bigearthnet-gdf-builder?color=dark-green" /></a>
+<a class="reference external" href="https://pdm.fming.dev"><img alt="pdm-managed" src="https://img.shields.io/badge/pdm-managed-blueviolet" /></a>
+<a class="reference external" href="https://github.com/intuit/auto"><img alt="Auto Release" src="https://img.shields.io/badge/release-auto.svg?colorA=888888&amp;colorB=blueviolet&amp;label=auto&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAACzElEQVR4AYXBW2iVBQAA4O+/nLlLO9NM7JSXasko2ASZMaKyhRKEDH2ohxHVWy6EiIiiLOgiZG9CtdgG0VNQoJEXRogVgZYylI1skiKVITPTTtnv3M7+v8UvnG3M+r7APLIRxStn69qzqeBBrMYyBDiL4SD0VeFmRwtrkrI5IjP0F7rjzrSjvbTqwubiLZffySrhRrSghBJa8EBYY0NyLJt8bDBOtzbEY72TldQ1kRm6otana8JK3/kzN/3V/NBPU6HsNnNlZAz/ukOalb0RBJKeQnykd7LiX5Fp/YXuQlfUuhXbg8Di5GL9jbXFq/tLa86PpxPhAPrwCYaiorS8L/uuPJh1hZFbcR8mewrx0d7JShr3F7pNW4vX0GRakKWVk7taDq7uPvFWw8YkMcPVb+vfvfRZ1i7zqFwjtmFouL72y6C/0L0Ie3GvaQXRyYVB3YZNE32/+A/D9bVLcRB3yw3hkRCdaDUtFl6Ykr20aaLvKoqIXUdbMj6GFzAmdxfWx9iIRrkDr1f27cFONGMUo/gRI/jNbIMYxJOoR1cY0OGaVPb5z9mlKbyJP/EsdmIXvsFmM7Ql42nEblX3xI1BbYbTkXCqRnxUbgzPo4T7sQBNeBG7zbAiDI8nWfZDhQWYCG4PFr+HMBQ6l5VPJybeRyJXwsdYJ/cRnlJV0yB4ZlUYtFQIkMZnst8fRrPcKezHCblz2IInMIkPzbbyb9mW42nWInc2xmE0y61AJ06oGsXL5rcOK1UdCbEXiVwNXsEy/6+EbaiVG8eeEAfxvaoSBnCH61uOD7BS1Ul8ESHBKWxCrdyd6EYNKihgEVrwOAbQruoytuBYIFfAc3gVN6iawhjKyNCEpYhVJXgbOzARyaU4hCtYizq5EI1YgiUoIlT1B7ZjByqmRWYbwtdYjoWoN7+LOIQefIqKawLzK6ID69GGpQgwhhEcwGGUzfEPAiPqsCXadFsAAAAASUVORK5CYII=" /></a></p>
+<!-- WIP: [![MyPy Type Checker](https://img.shields.io/badge/%20type_checker-mypy-%231674b1?style=flat&color=dark-green)](http://mypy-lang.org/) -->
 <p>This library provides a collection of functions to generate and extend GeoDataFrames for the <a class="reference external" href="https://bigearth.net">BigEarthNet</a> dataset.</p>
 <p><code class="docutils literal notranslate"><span class="pre">bigearthnet_gdf_builder</span></code> tries to accomplish two goals:</p>
 <ol class="arabic simple">
@@ -239,7 +246,7 @@ Functions for both archives, BEN-S1 and BEN-S2, are provided.</p>
                 </div>
                 <div class="title">Quickstart</div>
               </div>
-              <svg><use href="#svg-arrow-right"></use></svg>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
           
         </div>
@@ -278,10 +285,5 @@ Functions for both archives, BEN-S1 and BEN-S2, are provided.</p>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/scripts/furo.js"></script>
-    <script>let toggleHintShow = 'Click to show';</script>
-    <script>let toggleHintHide = 'Click to hide';</script>
-    <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     </body>
 </html>
