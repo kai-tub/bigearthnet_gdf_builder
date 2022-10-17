@@ -31,9 +31,10 @@ jobs:
       - name: Check precommit
         run: |
           pdm run pre-commit run --all-files
-      - name: Test mypy
-        run: |
-          pdm run check-types
+      # Re-enable when mypy update is done
+      # - name: Test mypy
+      #   run: |
+      #     pdm run check-types
       - name: Run tests from within PDM
         run: |
           pdm run tests
