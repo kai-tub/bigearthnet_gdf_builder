@@ -34,6 +34,7 @@ documentation = "https://kai-tub.github.io/bigearthnet_gdf_builder"
 [project.scripts]
 ben_gdf_builder = "bigearthnet_gdf_builder.builder:_run_gdf_cli"
 
+[project.optional-dependencies]
 [build-system]
 requires = ["pdm-pep517>=1.0.0"]
 build-backend = "pdm.pep517.api"
@@ -53,6 +54,7 @@ docs = [
     "linkify-it-py",
     "furo",
     "common-nb-preprocessors>=1",
+    "sphinx-cli-recorder>=0.1.5",
 ]
 
 test = [
