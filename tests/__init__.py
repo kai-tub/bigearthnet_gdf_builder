@@ -1,1 +1,1 @@
-"""Test package for bigearthnet_gdf_builder."""
+"""Test package for bigearthnet-gdf-builder."""
