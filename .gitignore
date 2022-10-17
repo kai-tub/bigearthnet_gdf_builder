@@ -1,8 +1,10 @@
-ben_gdf_builder_env/
-*.parquet
+# Personal often required
+docs/jupyter_execute/
 .vscode/
+###
+
+.pdm.toml
 # hide this for now
-tiny.parquet
 *.bak
 .gitattributes
 .last_checked
@@ -15,6 +17,8 @@ _tmp*
 tmp*
 tags
 node_modules/
+*.parquet
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -5,3 +5,6 @@ entries:
     subtrees:
       - entries:
         - glob: "api_*"
+  - file: general/dependencies
+  - file: general/code_of_conduct
+  - file: general/license

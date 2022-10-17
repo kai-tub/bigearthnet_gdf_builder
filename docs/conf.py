@@ -33,7 +33,9 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
     # Other popular choices:
+    # "sphinx_design",
     # "myst_parser",
+    # "sphinx_cli_recorder",
     # "sphinxcontrib.mermaid",
     # "sphinx_design",
     # "sphinx_inline_tabs",
@@ -58,6 +60,19 @@ myst_enable_extensions = [
     "substitution",
     "tasklist",
 ]
+
+nb_custom_formats = {
+    ".ipynb": [
+        "common_nb_preprocessors.myst_nb_metadata_injector",
+        {"prefix": "#", "delimiter": "="},
+    ]
+}
+
+# Recommendation from furo
+# https://pradyunsg.me/furo/kitchen-sink/api/
+autodoc_typehints = "description"
+autodoc_class_signature = "separated"
+
 source_suffix = {".ipynb": "myst-nb", ".md": "myst-nb"}
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

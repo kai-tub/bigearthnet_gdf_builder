@@ -1,10 +1,12 @@
 import enum
-import functools
 import shutil
+import tempfile
 import warnings
 from numbers import Real
 from pathlib import Path
 from typing import Callable, List, Tuple, Union
+
+import requests
 
 warnings.filterwarnings("ignore", category=UserWarning)
 
@@ -13,7 +15,7 @@ import appdirs
 import fastcore.all as fc
 import geopandas
 import pandas as pd
-import rich.traceback
+import rich
 import typer
 from bigearthnet_common.base import (
     get_original_split_from_patch_name,
@@ -281,7 +283,7 @@ def get_gdf_from_s1_patch_dir(
     return gdf
 
 
-@functools.lru_cache()
+# @functools.lru_cache()
 def _get_country_borders() -> geopandas.GeoDataFrame:
     "Get all country borders"
     # directly filter out irrelevant lines
@@ -292,14 +294,29 @@ def _get_country_borders() -> geopandas.GeoDataFrame:
         "geometry",
     ]
 
-    # do not depent on internal function
-    # file_path = _download_and_cache_url(COUNTRIES_URL, force_download=force_download)
-    gdf = geopandas.read_file(COUNTRIES_URL)
+    # Now requires to provide some valid user-agent header
+    # gdf = geopandas.read_file(COUNTRIES_URL)
+    with tempfile.TemporaryFile() as fp:
+        resp = requests.get(
+            COUNTRIES_URL,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
+            },
+        )
+        if resp.status_code != 200:
+            raise RuntimeError(
+                "Error downloading reference shapefile. Probably due to some server issues."
+            )
+        fp.write(resp.content)
+        fp.seek(0)
+        gdf = geopandas.read_file(fp)
+
     # NOTE: Update to the admin naturalearthdataset has removed the
     # ISO_A2 label for Kosovo, to remain compatible with previous version,
     # the function will inject the disputed ISO_A2 code for Kosovo
     kosovo_index = gdf[gdf["NAME"] == "Kosovo"].index
     gdf.loc[kosovo_index, "ISO_A2"] = "XK"
+
     return gdf[rel_cols]
 
 
@@ -742,7 +759,7 @@ def build_recommended_s1_parquet(
 
 
 def _run_gdf_cli() -> None:
-    app = typer.Typer()
+    app = typer.Typer(rich_markup_mode="markdown")
     app.command()(build_recommended_s1_parquet)
     app.command()(build_recommended_s2_parquet)
     app.command()(build_raw_ben_s1_parquet)
