@@ -1,3 +1,19 @@
+# v0.1.10 (Tue Oct 18 2022)
+
+#### 🐛 Bug Fix
+
+- fix wrong version number [#15](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/15) ([@kai-tub](https://github.com/kai-tub))
+
+#### 🏠 Internal
+
+- Remove pypackages [#14](https://github.com/kai-tub/bigearthnet_gdf_builder/pull/14) ([@kai-tub](https://github.com/kai-tub))
+
+#### Authors: 1
+
+- Kai Norman Clasen ([@kai-tub](https://github.com/kai-tub))
+
+---
+
 # v0.1.9 (Mon Oct 17 2022)
 
 #### 🐛 Bug Fix

@@ -1,6 +1,6 @@
 [project]
 name = "bigearthnet-gdf-builder"
-version = "0.1.9"
+version = "0.1.10"
 description = "A package to generate and extend BigEarthNet GeoDataFrames."
 authors = [
     {name = "Kai Norman Clasen", email= "k.clasen@protonmail.com"},
