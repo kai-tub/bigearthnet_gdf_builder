@@ -19,6 +19,7 @@ tags
 node_modules/
 *.parquet
 .vscode
+__pypackages__/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
